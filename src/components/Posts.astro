@@ -25,12 +25,16 @@
 	// 	}
 	// }
 
-	const posts = await Astro.glob('/src/pages/posts/.*md');
+	// const posts = await Astro.glob('/src/pages/posts/.*md');
+
+	const posts = await Astro.glob('/src/pages/posts/*.md');
+
+	console.log(posts)
 ---
 
 <main class="container mx-auto px-4 max-w-xl">
 	<!-- <Default data={[{ name: 'all' },...data]} dataArt={dataArt} dataArtAsCopy={dataArt} client:load /> -->
-	    {posts.data.map((post) => (
+	{posts.map((post) => (
 			{post}
         // <PostPreview post={post} />
     ))}
