@@ -2,25 +2,64 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 
-#publish_mode: editorial_workflow
+publish_mode: editorial_workflow
 
 media_folder: "public/assets/posts-images"
 
 public_folder: "public/images/uploads"
 
 collections:
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    label: "Blog" # Used in the UI
+  - name: "article" # Used in routes, e.g., /admin/collections/blog
+    label: "Article" # Used in the UI
     folder: "src/pages/posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "{{title}}-{{description}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       # - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Content", name: "content", widget: "string"}
-      - {label: "Topics", name: "topics", widget: "string"}
+      - label: "Topics",
+        name: "topics",
+        widget: "list",
+        fields:
+          - label: "Topic",
+            name: "topic",
+            widget: "relation",
+            collection: "topic",
+            search_fields: ["name"],
+            value_field: "name",
+            display_fields: ["name"]
+      # - { label: "Topics", name: "topics", widget: "relation", collection: "topics", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Image", name: "image", widget: "image"}
+      - { label: "Author", name: "author", widget: "relation", collection: "writer", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+      - {label: "Quote", name: "quote", widget: "string"}
+      - {label: "Quote by", name: "quote_by", widget: "string"}
+      - {label: "Image source", name: "image_source", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
+  - name: "topic" # Used in routes, e.g., /admin/collections/blog
+    label: "Topic" # Used in the UI
+    folder: "src/pages/posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{name}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      # - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      # - { label: "Arctiles", name: "articles", widget: "relation", collection: "topics", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+  - name: "writer" # Used in routes, e.g., /admin/collections/blog
+    label: "Writer" # Used in the UI
+    folder: "src/pages/posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{name}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      # - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Picture", name: "picture", widget: "image"}
+      # - { label: "Arctiles", name: "articles", widget: "relation", collection: "topics", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+      - {label: "Email", name: "email", widget: "string"}
+      - {label: "About", name: "about", widget: "string"}
+      - {label: "Website", name: "website", widget: "string"}
+      - {label: "LinkedIn", name: "linkedin", widget: "string"}
+      - {label: "Twitter", name: "twitter", widget: "string"}
