@@ -8,25 +8,29 @@
 	// const responseArt = await fetch(`${apiUrl}/articles`);
 	// const dataArt = await responseArt.json();
 
-	export let collection: any
+	// export let collection: any
 
-	export async function createCollection() {
-		return {
-			/** Load posts, sort newest -> oldest */
-			async data() {
-				const allPosts = Astro.fetchContent('./posts/*.md')
-				return allPosts//.sort((a, b) => new Date(b.date) - new Date(a.date))
-			},
+	// const { collection } = Astro.props
 
-			/** Set page size */
-			pageSize: 10,
-		}
-	}
+	// export async function createCollection() {
+	// 	return {
+	// 		/** Load posts, sort newest -> oldest */
+	// 		async data() {
+	// 			const allPosts = Astro.fetchContent('./posts/*.md')
+	// 			return allPosts//.sort((a, b) => new Date(b.date) - new Date(a.date))
+	// 		},
+
+	// 		/** Set page size */
+	// 		pageSize: 10,
+	// 	}
+	// }
+
+	const posts = await Astro.glob('/src/pages/posts/.*md');
 ---
 
 <main class="container mx-auto px-4 max-w-xl">
 	<!-- <Default data={[{ name: 'all' },...data]} dataArt={dataArt} dataArtAsCopy={dataArt} client:load /> -->
-	    {collection.data.map((post) => (
+	    {posts.data.map((post) => (
 			{post}
         // <PostPreview post={post} />
     ))}

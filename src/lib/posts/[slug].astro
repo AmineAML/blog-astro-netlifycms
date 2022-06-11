@@ -8,8 +8,10 @@
     import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
     import Navbar from '../../components/Navbar.svelte';
     import { blogUrl, apiUrl } from '../../lib/variables.js';
+    import '../assets/global.css';
 
-    const { slug } = Astro.request.params;
+    // const { slug } = Astro.request.params;
+    const { slug } = Astro.params;
 
     const response = await fetch(`${apiUrl}/articles/${slug}`);
     const data = await response.json();
@@ -62,7 +64,7 @@
     
     <!-- <link rel="stylesheet" href="/style/global.css" type="text/css"> -->
     <!-- <link rel="stylesheet" href="/style/home.css"> -->
-    <link rel="stylesheet" href={Astro.resolve("../../assets/global.css")}>
+    <!-- <link rel="stylesheet" href={Astro.resolve("../../assets/global.css")}> -->
 
     <meta name="description" content={data.description}>
 
