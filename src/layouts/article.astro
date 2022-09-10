@@ -51,9 +51,9 @@
         })
     }
 
-    const url //= `${blogUrl}/posts/${slug}`;
+    const url = `${blogUrl}/posts/${data.frontmatter.slug}`;
 
-    const title //= `${data.title} | EchoSpaceDev Blog`;
+    const title = `${data.frontmatter.title} | EchoSpaceDev Blog`;
 ---
 
 <!doctype html>
@@ -79,41 +79,43 @@
       "@type": "BlogPosting",
       "headline": data.title,
       "image": [
-        data.image.formats.medium.url,
+        data.frontmatter.image,
        ],
-      "datePublished": data.published_at,
-      "dateModified": data.updated_at,
+      "datePublished": data.frontmatter.published_at,
+      "dateModified": data.frontmatter.updated_at,
       "author": {
           "@type": "Person",
-          "name": data.author.name,
-          "url": data.author.website
+          "name": data.frontmatter.author.name,
+          "url": data.frontmatter.author.website
         }
     }
     </script>
 
-    <meta property="og:title" content={data.title}>
+    <meta property="og:title" content={data.frontmatter.title}>
     <meta property="og:type" content="article">
     <meta property="og:url" content={url}>
-    <meta property="og:image" content={data.image.formats.medium.url}>
-    <meta property="og:image:alt" content={`Thumbnail for ${data.title} blog post`}>
-    <meta property="og:description" content={data.description}>
+    <meta property="og:image" content={data.frontmatter.image}>
+    <meta property="og:image:alt" content={`Thumbnail for ${data.frontmatter.title} blog post`}>
+    <meta property="og:description" content={data.frontmatter.description}>
     <meta property="og:site_name" content="EchoSpaceDev Blog">
-    <meta property="article:published_time" content={data.published_at}>
-    <meta property="article:modified_time" content={data.updated_at}>
-    <meta property="article:author:first_name" content={data.author.name.split(' ')[0]}>
-    <meta property="article:author:last_name" content={data.author.name.split(' ')[1]}>
-    <meta property="article:section" content={data.topics.map(function(topic) { return topic.name }).join(', ')}>
-    <meta property="article:tag" content={data.topics.map(function(topic) { return topic.name }).join(', ')}>
+    <meta property="article:published_time" content={data.frontmatter.published_at}>
+    <meta property="article:modified_time" content={data.frontmatter.updated_at}>
+    <meta property="article:author:first_name" content={data.frontmatter.author.name.split(' ')[0]}>
+    <meta property="article:author:last_name" content={data.frontmatter.author.name.split(' ')[1]}>
+    <!-- <meta property="article:section" content={data.topics.map(function(topic) { return topic.name }).join(', ')}>
+    <meta property="article:tag" content={data.topics.map(function(topic) { return topic.name }).join(', ')}> -->
+        <meta property="article:section" content={data.frontmatter.topic}>
+    <meta property="article:tag" content={data.frontmatter.topic}>
     <!-- <meta property="og:locale" content="en_GB" />
     <meta property="og:locale:alternate" content="fr_FR" />
     <meta property="og:locale:alternate" content="es_ES" /> -->
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@aml_amine" />
-    <meta name="twitter:title" content={data.title} />
-    <meta name="twitter:description" content={data.description} />
-    <meta name="twitter:image" content={data.image.formats.medium.url} />
-    <meta name="twitter:image:alt" content={`Thumbnail for ${data.title} blog post`}>
+    <meta name="twitter:title" content={data.frontmatter.title} />
+    <meta name="twitter:description" content={data.frontmatter.description} />
+    <meta name="twitter:image" content={data.frontmatter.image} />
+    <meta name="twitter:image:alt" content={`Thumbnail for ${data.frontmatter.title} blog post`}>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,14 +132,14 @@
     <main class="container mx-auto px-4 max-w-xl">
         <article itemscope itemtype="http://schema.org/Article" class="flex flex-col space-y-2 mt-10 mb-10">
             <!-- <div class="flex flex-col space-y-2 mt-10 mb-10"> -->
-                <PostHeader title={data.title} image={data.image} imageSource={data.image_source} topics={[data.topic]} publishedAt={data.published_at} author={data.author} />
+                <PostHeader title={data.frontmatter.title} image={data.frontmatter.image} imageSource={data.frontmatter.image_source} topic={[data.frontmatter.topic]} publishedAt={data.frontmatter.published_at} author={data.frontmatter.author} />
                 <div class="divider" />
-                <PostContent content={data.content} />
+                <PostContent content={data.frontmatter.content} />
                 <!-- Quotes are optional -->
-                {data.quote != null ? <PostQuote quote={data.quote} quoteBy={data.quote_by} /> : ''}
+                {data.quote != null ? <PostQuote quote={data.frontmatter.quote} quoteBy={data.frontmatter.quote_by} /> : ''}
                 <div class="divider" />
                 <PostShare url={url} />
-                <PostAuthor author={data.author} />
+                <PostAuthor author={data.frontmatter.author} />
             <!-- </div> -->
         </article>
     </main>

@@ -24,7 +24,7 @@
 	// 		pageSize: 10,
 	// 	}
 	// }
-
+ 
 	// const posts = await Astro.glob('/src/pages/posts/.*md');
 
 	const posts = await Astro.glob('/src/pages/posts/*.md');
@@ -33,9 +33,9 @@
 ---
 
 <main class="container mx-auto px-4 max-w-xl">
-	<!-- <Default data={[{ name: 'all' },...data]} dataArt={dataArt} dataArtAsCopy={dataArt} client:load /> -->
+	<!-- <Default data={[{ name: 'all' },...posts]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
 	{posts.map((post) => (
-			{post}
+			post['frontmatter']['title']
         // <PostPreview post={post} />
     ))}
 </main>

@@ -16,7 +16,8 @@
 <section class="flex flex-col title">
   <h1 class="text-4xl mb-10 font-bold mx-auto" itemprop="name">{title}</h1>
   <figure class="flex flex-col">
-    <img src={image.formats.medium.url} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" />
+    <!-- <img src={image.formats.medium.url} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" /> -->
+    <img src={image} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" />
     <figcaption class="font-medium">
       <div class="text-gray-500 text-center text-xs" itemprop="license">{imageSource}</div>
     </figcaption>
@@ -25,6 +26,7 @@
     {#each topics as { name }}
       <div class="badge badge-ghost mx-2 my-2">{name}</div>
     {/each}
+    <!-- <div class="badge badge-ghost mx-2 my-2">{topic.name}</div> -->
   </div>
   <div class="flex space-x-1 text-sm">
     <p>Posted on</p>
