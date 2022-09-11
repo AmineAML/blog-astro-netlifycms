@@ -1,16 +1,16 @@
 <script>
   import PostPreview from "./PostPreview.svelte";
-  import Search from "./Search.svelte"
+  import Search from "./Search.svelte";
 
   export let data;
   export let dataArt;
   export let dataArtAsCopy;
-  let articles = []
-  let topics = []
+  let articles = [];
+  let topics = [];
 
   function filter(topic) {
-    console.log('ree')
-    console.log(topics)
+    console.log("ree");
+    console.log(topics);
     if (topic == "all") {
       dataArt = dataArtAsCopy;
     } else {
@@ -18,25 +18,28 @@
         article.topics.some((artTopic) => artTopic == topic)
       );
     }
-    articles = dataArt
+    articles = dataArt;
   }
 
-  articles = dataArt
+  articles = dataArt;
 
-  topics = data
+  topics = data;
 
-  console.log('articles')
-  console.log(dataArt)
-  console.log(topics)
+  console.log("articles");
+  console.log(dataArt);
+  console.log(topics);
 
-  let searchByValue = ''
+  let searchByValue = "";
 </script>
 
 <div class="flex flex-col">
   <!-- <h1 class="text-4xl my-10 font-extrabold mx-auto title">
     Amine Amellouk's Blog
   </h1> -->
-  <h1 class="text-4xl mt-10 font-extrabold mx-auto title text-center" style="margin-bottom: 1rem;">
+  <h1
+    class="text-4xl mt-10 font-extrabold mx-auto title text-center"
+    style="margin-bottom: 1rem;"
+  >
     Sharing my learnings in software development one post at a time.
   </h1>
 
@@ -45,7 +48,11 @@
     </p> -->
 
   <div class="flex space-x-2 mx-auto">
-    <a href="https://www.amineamellouk.com" aria-label="portfolio" target="blank">
+    <a
+      href="https://www.amineamellouk.com"
+      aria-label="portfolio"
+      target="blank"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6"
@@ -61,7 +68,11 @@
         />
       </svg>
     </a>
-    <a href="https://linkedin.com/in/amine-amellouk" aria-label="linkedin" target="blank">
+    <a
+      href="https://linkedin.com/in/amine-amellouk"
+      aria-label="linkedin"
+      target="blank"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 5 1036 990"
@@ -73,7 +84,11 @@
         />
       </svg>
     </a>
-    <a href="mailto:amine.amellouk@outlook.com" aria-label="email" target="blank">
+    <a
+      href="mailto:amine.amellouk@outlook.com"
+      aria-label="email"
+      target="blank"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6"
@@ -89,7 +104,11 @@
         />
       </svg>
     </a>
-    <a href="https://www.twitter.com/aml_amine" aria-label="twitter" target="blank">
+    <a
+      href="https://www.twitter.com/aml_amine"
+      aria-label="twitter"
+      target="blank"
+    >
       <svg
         fill="#000000"
         xmlns="http://www.w3.org/2000/svg"
@@ -104,18 +123,24 @@
 
   <div class="flex justify-center flex-wrap article" style="margin-top: 2rem;">
     <div>
-      <h3 class="text-center">Search blog by topics</h3>
+      {#if dataArtAsCopy.length > 0}
+        <h3 class="text-center">Search blog by topics</h3>
+      {/if}
       <div class="flex" style="color: #FEF9E6;">
         {#each topics as { name }}
           {#if name == "all"}
             {#if dataArt.length != dataArtAsCopy.length}
-              <button on:click={() => filter(name)} class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2" style="background-color: #f7f7e6; color: black;"
-                >{name}</button
+              <button
+                on:click={() => filter(name)}
+                class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2"
+                style="background-color: #f7f7e6; color: black;">{name}</button
               >
             {/if}
           {:else}
-            <button on:click={() => filter(name)} class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2" style="background-color: #f7f7e6; color: black;"
-              >{name}</button
+            <button
+              on:click={() => filter(name)}
+              class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2"
+              style="background-color: #f7f7e6; color: black;">{name}</button
             >
           {/if}
         {/each}
@@ -127,7 +152,9 @@
 
   <Search bind:searchByValue />
 
-  {#each articles.filter(article => article.title.toLowerCase().includes(searchByValue)) as article}
+  {#each articles.filter((article) => article.title
+      .toLowerCase()
+      .includes(searchByValue)) as article}
     <PostPreview
       title={article.title}
       topics={article.topics}

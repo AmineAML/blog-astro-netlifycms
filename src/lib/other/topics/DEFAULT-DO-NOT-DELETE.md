@@ -1,3 +1,3 @@
 ---
-title: HIDE_DEFAULT_TOPIC
+name: HIDE_DEFAULT_TOPIC
 ---

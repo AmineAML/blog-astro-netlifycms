@@ -29,7 +29,7 @@
 
 	const posts = (await Astro.glob('/src/pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any));
 
-	const topics = (await Astro.glob('/src/lib/other/topics/*.md')).map(topic => topic.frontmatter).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_TOPIC');
+	const topics = (await Astro.glob('/src/lib/other/topics/*.md')).filter(post => post.frontmatter.name != 'HIDE_DEFAULT_TOPIC').map(topic => topic.frontmatter);
 
 	console.log(posts)
 	console.log('reee', topics)
