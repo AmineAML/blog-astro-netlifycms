@@ -42,7 +42,7 @@ collections:
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "topic" # Used in routes, e.g., /admin/collections/blog
     label: "Topic" # Used in the UI
-    folder: "src/lib/topics" # The path to the folder where the documents are stored
+    folder: "src/lib/other/topics" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{name}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
@@ -52,7 +52,7 @@ collections:
       # - { label: "Arctiles", name: "articles", widget: "relation", collection: "topics", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
   - name: "writer" # Used in routes, e.g., /admin/collections/blog
     label: "Writer" # Used in the UI
-    folder: "src/lib/authors" # The path to the folder where the documents are stored
+    folder: "src/lib/other/authors" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{name}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
