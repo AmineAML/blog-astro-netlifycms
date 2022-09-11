@@ -5,21 +5,37 @@
   export let data;
   export let dataArt;
   export let dataArtAsCopy;
+  let articles = []
+  let topics = []
 
   function filter(topic) {
+    console.log('ree')
+    console.log(topics)
     if (topic == "all") {
       dataArt = dataArtAsCopy;
     } else {
       dataArt = dataArtAsCopy.filter((article) =>
-        article.topics.some((artTopic) => artTopic.name == topic)
+        article.topics.some((artTopic) => artTopic == topic)
       );
     }
+    articles = dataArt
   }
+
+  articles = dataArt
+
+  topics = data
+
+  console.log('articles')
+  console.log(dataArt)
+  console.log(topics)
 </script>
 
 <div class="flex flex-col">
-  <h1 class="text-4xl my-10 font-extrabold mx-auto title">
+  <!-- <h1 class="text-4xl my-10 font-extrabold mx-auto title">
     Amine Amellouk's Blog
+  </h1> -->
+  <h1 class="text-4xl mt-10 font-extrabold mx-auto title text-center" style="margin-bottom: 1rem;">
+    Sharing my learnings in software development one post at a time.
   </h1>
 
   <!-- <p class="mx-auto article">
@@ -84,18 +100,19 @@
     </a>
   </div>
 
-  <div class="flex justify-center flex-wrap article">
+  <div class="flex justify-center flex-wrap article" style="margin-top: 2rem;">
     <div>
+      <h3 class="text-center">Available topics</h3>
       <div class="flex" style="color: #FEF9E6;">
-        {#each data as { name }}
+        {#each topics as { name }}
           {#if name == "all"}
             {#if dataArt.length != dataArtAsCopy.length}
-              <button class="badge mx-2 my-2" on:click={filter(name)}
+              <button on:click={() => filter(name)} class="badge mx-2 my-2" style="background-color: #f7f7e6; color: black;"
                 >{name}</button
               >
             {/if}
           {:else}
-            <button class="badge mx-2 my-2" on:click={filter(name)}
+            <button on:click={() => filter(name)} class="badge mx-2 my-2" style="background-color: #f7f7e6; color: black;"
               >{name}</button
             >
           {/if}
@@ -108,11 +125,11 @@
 
   <!-- <Search /> -->
 
-  {#each [...dataArt].reverse() as article}
+  {#each articles as article}
     <PostPreview
       title={article.title}
       topics={article.topics}
-      publishedAt={article.published_at}
+      publishedAt={article.date}
       author={article.author}
       description={article.description}
       slug={article.slug}

@@ -12,17 +12,23 @@
 
     const data = Astro.props
 
+    console.log(data)
+
     // const { slug } = Astro.request.params;
     // const { slug } = Astro.params;
 
     // const response = await fetch(`${apiUrl}/articles/${slug}`);
     // const data = await response.json();
 
+    function convertToSlug(text) {
+        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+    }
+
     export async function getStaticPaths({ rss }) {
         // const response = await fetch(`${apiUrl}/articles`);
         // const data = await response.json();
 
-        const data = await Astro.glob('../pages/posts/*.md')
+        const data = (await Astro.glob('../pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any))
 
         rss({
             // The RSS Feed title, description, and custom metadata.
@@ -30,11 +36,11 @@
             description: 'A blog about programming, Software Development with tutorials and topics discussions mainly about the Back-End and the DevOps',
             customData: `<language>en-us</language>`,
             // The list of items for your RSS feed, sorted.
-            items: [...data].reverse().map(article => ({
+            items: [...data].map(article => ({
                 title: article.frontmatter.title,
                 description: article.frontmatter.description,
-                link: `${blogUrl}/posts/${article.frontmatter.slug}`,
-                pubDate: article.frontmatter.published_at,
+                link: `${blogUrl}/posts/${convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)}`,
+                pubDate: article.content.date,
             })),
             // Optional: Customize where the file is written to.
             // Otherwise, defaults to "/rss.xml"
@@ -42,7 +48,7 @@
         });
 
         return data.map(article => {
-            const { slug } = article.frontmatter
+            const slug = convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)
             return {
                 params: {
                     slug
@@ -51,9 +57,15 @@
         })
     }
 
-    const url = `${blogUrl}/posts/${data.frontmatter.slug}`;
+    const url = `${blogUrl}/posts/${convertToSlug(data.content.title + '-' + data.content.description)}`;
 
-    const title = `${data.frontmatter.title} | EchoSpaceDev Blog`;
+    const title = `${data.content.title} | EchoSpaceDev Blog`;
+
+    const author = (await Astro.glob('/src/lib/other/authors/*.md')).find(author => author.frontmatter.name == data.content.author).frontmatter
+    
+    // async function getAuthorByFullName(name) {
+    //     return (await Astro.glob('/src/lib/other/authors/*.md')).find(author => author.frontmatter.name == name).frontmatter
+    // }
 ---
 
 <!doctype html>
@@ -79,43 +91,43 @@
       "@type": "BlogPosting",
       "headline": data.title,
       "image": [
-        data.frontmatter.image,
+        data.content.image,
        ],
-      "datePublished": data.frontmatter.published_at,
-      "dateModified": data.frontmatter.updated_at,
+      "datePublished": data.content.published_at,
+      "dateModified": data.content.updated_at,
       "author": {
           "@type": "Person",
-          "name": data.frontmatter.author.name,
-          "url": data.frontmatter.author.website
+          "name": data.content.author.name,
+          "url": data.content.author.website
         }
     }
     </script>
 
-    <meta property="og:title" content={data.frontmatter.title}>
+    <meta property="og:title" content={data.content.title}>
     <meta property="og:type" content="article">
     <meta property="og:url" content={url}>
-    <meta property="og:image" content={data.frontmatter.image}>
-    <meta property="og:image:alt" content={`Thumbnail for ${data.frontmatter.title} blog post`}>
-    <meta property="og:description" content={data.frontmatter.description}>
+    <meta property="og:image" content={data.content.image}>
+    <meta property="og:image:alt" content={`Thumbnail for ${data.content.title} blog post`}>
+    <meta property="og:description" content={data.content.description}>
     <meta property="og:site_name" content="EchoSpaceDev Blog">
-    <meta property="article:published_time" content={data.frontmatter.published_at}>
-    <meta property="article:modified_time" content={data.frontmatter.updated_at}>
-    <meta property="article:author:first_name" content={data.frontmatter.author.name.split(' ')[0]}>
-    <meta property="article:author:last_name" content={data.frontmatter.author.name.split(' ')[1]}>
+    <meta property="article:published_time" content={data.content.published_at}>
+    <meta property="article:modified_time" content={data.content.updated_at}>
+    <meta property="article:author:first_name" content={data.content.author.split(' ')[0]}>
+    <meta property="article:author:last_name" content={data.content.author.split(' ')[1]}>
     <!-- <meta property="article:section" content={data.topics.map(function(topic) { return topic.name }).join(', ')}>
     <meta property="article:tag" content={data.topics.map(function(topic) { return topic.name }).join(', ')}> -->
-        <meta property="article:section" content={data.frontmatter.topic}>
-    <meta property="article:tag" content={data.frontmatter.topic}>
+    <meta property="article:section" content={data.content.topic}>
+    <meta property="article:tag" content={data.content.topic}>
     <!-- <meta property="og:locale" content="en_GB" />
     <meta property="og:locale:alternate" content="fr_FR" />
     <meta property="og:locale:alternate" content="es_ES" /> -->
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@aml_amine" />
-    <meta name="twitter:title" content={data.frontmatter.title} />
-    <meta name="twitter:description" content={data.frontmatter.description} />
-    <meta name="twitter:image" content={data.frontmatter.image} />
-    <meta name="twitter:image:alt" content={`Thumbnail for ${data.frontmatter.title} blog post`}>
+    <meta name="twitter:title" content={data.content.title} />
+    <meta name="twitter:description" content={data.content.description} />
+    <meta name="twitter:image" content={data.content.image} />
+    <meta name="twitter:image:alt" content={`Thumbnail for ${data.content.title} blog post`}>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,14 +144,14 @@
     <main class="container mx-auto px-4 max-w-xl">
         <article itemscope itemtype="http://schema.org/Article" class="flex flex-col space-y-2 mt-10 mb-10">
             <!-- <div class="flex flex-col space-y-2 mt-10 mb-10"> -->
-                <PostHeader title={data.frontmatter.title} image={data.frontmatter.image} imageSource={data.frontmatter.image_source} topic={[data.frontmatter.topic]} publishedAt={data.frontmatter.published_at} author={data.frontmatter.author} />
+                <PostHeader title={data.content.title} image={data.content.image} imageSource={data.content.image_source} topics={[data.content.topics]} publishedAt={data.content.date} author={author} />
                 <div class="divider" />
-                <PostContent content={data.frontmatter.content} />
+                <PostContent content={data.content.content} />
                 <!-- Quotes are optional -->
-                {data.quote != null ? <PostQuote quote={data.frontmatter.quote} quoteBy={data.frontmatter.quote_by} /> : ''}
+                {data.quote != null ? <PostQuote quote={data.content.quote} quoteBy={data.content.quote_by} /> : ''}
                 <div class="divider" />
                 <PostShare url={url} />
-                <PostAuthor author={data.frontmatter.author} />
+                <PostAuthor author={author} />
             <!-- </div> -->
         </article>
     </main>

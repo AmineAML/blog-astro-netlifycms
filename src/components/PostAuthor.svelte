@@ -2,11 +2,11 @@
   export let author;
 </script>
 
-<section class="card lg:card-side bordered flex px-2" style="background-color: #bec298;" itemscope itemtype="https://schema.org/Person">
+<section class="card lg:card-side bordered flex px-2" style="background-color: #f7f7e6;" itemscope itemtype="https://schema.org/Person">
   <figure class="flex">
     <div class="avatar m-auto">
       <div class="mb-8 rounded-full w-24 h-24">
-        <img src={author.picture.formats.small.url} alt={`Photo of ${author.name}`} itemprop="image" />
+        <img src={'/' + author.picture} alt={`Photo of ${author.name}`} itemprop="image" />
       </div>
     </div>
   </figure>

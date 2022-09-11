@@ -1,5 +1,5 @@
 ---
-layout: $/layouts/article.astro
+layout: ../../layouts/article.astro
 title: There is no one who loves pain itself
 description: who seeks after it and wants to have it, simply because it is pain.
 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
@@ -14,7 +14,7 @@ content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
 topics:
   - Example 2
 date: 2022-09-10T16:59:48.881Z
-image: public/images/uploads/tvcz6r7q2p371.png
+image: public/assets/posts-images/tvcz6r7q2p371.png
 author: Amine Amellouk
 quote: live your life like you're the hero in your movie
 quote_by: Joe Rogan

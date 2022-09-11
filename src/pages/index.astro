@@ -1,22 +1,22 @@
 ---
-    import Posts from '../components/Posts.astro';
-    import Navbar from '../components/Navbar.svelte';
-    import Footer from '../components/Footer.svelte';
-    import GoogleAnalytics from '../components/GoogleAnalytics.astro';
-    import { blogUrl, blogLogo } from '../lib/variables.js';
-    import '../assets/global.css';
+import Posts from "../components/Posts.astro";
+import Navbar from "../components/Navbar.svelte";
+import Footer from "../components/Footer.svelte";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import { blogUrl, blogLogo } from "../lib/variables.js";
+import "../assets/global.css";
 
-    let title = 'Welcome | EchoSpaceDev Blog';
-    let thumbnail = blogLogo;
-    let description = "I've started this blog to reignite a passion I had stopped doing since many years and one that I've really enjoyed. As a Software Developer, learning is part of the job, while we might retain that knowledge by heart, engineers are problem solvers that understand their craft. Thus as a good practice is blogging and writing documentation about what we've learned which is not just an act of sharing and helping others, actually it's highly recommended we do so as many of us got stuck later on the simelar issues and had to research again resulting in wasted time that could be spent updating what we've already done before and thus becoming effecient with our work";
-    let permaLink = blogUrl;
+let title = "Welcome | EchoSpaceDev Blog";
+let thumbnail = blogLogo;
+let description =
+  "I've started this blog to reignite a passion I had stopped doing since many years and one that I've really enjoyed. As a Software Developer, learning is part of the job, while we might retain that knowledge by heart, engineers are problem solvers that understand their craft. Thus as a good practice is blogging and writing documentation about what we've learned which is not just an act of sharing and helping others, actually it's highly recommended we do so as many of us got stuck later on the simelar issues and had to research again resulting in wasted time that could be spent updating what we've already done before and thus becoming effecient with our work";
+let permaLink = blogUrl;
 ---
 
 <html lang="en" data-theme="retro" prefix="og: https://ogp.me/ns/website#">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
@@ -24,17 +24,22 @@
     <!-- <link rel="stylesheet" href={Astro.resolve("../assets/global.css")}> -->
 
     <title>{title}</title>
-    <meta name="description" content={description}>
+    <meta name="description" content={description} />
 
     <!-- RSS feed -->
-    <link rel="alternate" type="application/rss+xml" title="My RSS Feed" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="My RSS Feed"
+      href="/rss.xml"
+    />
 
     <!-- Social media meta -->
-    <meta property="og:title" content={title}>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={permaLink}>
-    <meta property="og:description" content={description}>
-    <meta property="og:image" content={thumbnail}>
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={permaLink} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={thumbnail} />
 
     <!-- Twitter meta -->
     <meta name="twitter:card" content="summary" />
@@ -42,14 +47,20 @@
     <meta name="twitter:title" content="EchoSpaceDev Blog" />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={thumbnail} />
-    <meta name="twitter:image:alt" content="EchoSpaceDev Blog Thumbnail">
+    <meta name="twitter:image:alt" content="EchoSpaceDev Blog Thumbnail" />
 
     <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap"
+      rel="stylesheet"
+    />
 
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script
+      type="text/javascript"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
 
     <!-- Block the back button -->
     <!-- <script type="text/javascript">
@@ -58,9 +69,9 @@
                 history.go(1);
             };
         </script> -->
-</head>
+  </head>
 
-<body class="flex flex-col h-screen justify-between">
+  <body class="flex flex-col min-h-screen justify-between">
     <Navbar />
 
     <Posts />
@@ -68,18 +79,17 @@
     <Footer />
 
     <script>
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.on("init", user => {
-                    if (!user) {
-                        window.netlifyIdentity.on("login", () => {
-                            document.location.href = "/admin/";
-                        });
-                    }
-                });
-            }
-        </script>
-</body>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
 
-<GoogleAnalytics />
-
+  <GoogleAnalytics />
 </html>

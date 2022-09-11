@@ -1,5 +1,5 @@
 ---
-layout: $/layouts/article.astro
+layout: ../../layouts/article.astro
 title: Lorem Ipsum
 description: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
   consectetur, adipisci velit..
@@ -19,7 +19,7 @@ topics:
   - Example 1
   - Example 2
 date: 2022-09-10T16:56:36.637Z
-image: public/images/uploads/z4nfqdgd52l61.png
+image: public/assets/posts-images/z4nfqdgd52l61.png
 author: Amine Amellouk
 quote: Traveling leaves you speechless and then turns you into a storyteller
 quote_by: Ibn Battuta

@@ -27,15 +27,16 @@
  
 	// const posts = await Astro.glob('/src/pages/posts/.*md');
 
-	const posts = await Astro.glob('/src/pages/posts/*.md');
+	const posts = (await Astro.glob('/src/pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any));
+
+	const topics = (await Astro.glob('/src/lib/other/topics/*.md')).map(topic => topic.frontmatter);
 
 	console.log(posts)
+	console.log('reee', topics)
 ---
 
 <main class="container mx-auto px-4 max-w-xl">
-	<!-- <Default data={[{ name: 'all' },...posts]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
-	{posts.map((post) => (
-			post['frontmatter']['title']
-        // <PostPreview post={post} />
-    ))}
+	<!-- Enabling JavaScript on the component doesn't seem to work and throws a 'destructured parameter is undefined' error, to make it work then we might need to update the svelte adapter and even whole astro framework version -->
+	<!-- <Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
+	<Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} />
 </main>
