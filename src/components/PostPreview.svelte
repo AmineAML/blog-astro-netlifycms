@@ -34,7 +34,7 @@
         {/each}
     </div>
     <figure class="flex">
-        <img src={image.replace('/public', '')} alt="blog post" class="w-full h-full" />
+        <img src={image.replace('public', '')} alt="blog post" class="w-full h-full" />
     </figure>
     <div class="card-body">
         <div class="flex space-x-1 article text-xs">
