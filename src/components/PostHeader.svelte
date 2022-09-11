@@ -21,7 +21,7 @@
   <h1 class="text-4xl mb-10 font-bold mx-auto" itemprop="name">{title}</h1>
   <figure class="flex flex-col">
     <!-- <img src={image.formats.medium.url} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" /> -->
-    <img src={'/' + image} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" />
+    <img src={'/' + image.replace('/public', '')} class="w-full" alt={`Thumbnail for ${title} blog post`} itemprop="image" />
     <figcaption class="font-medium">
       <div class="text-gray-500 text-center text-xs" itemprop="license">{imageSource}</div>
     </figcaption>
