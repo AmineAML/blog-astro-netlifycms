@@ -6,7 +6,7 @@
   <figure class="flex">
     <div class="avatar m-auto">
       <div class="mb-8 rounded-full w-24 h-24">
-        <img src={'/' + author.picture} alt={`Photo of ${author.name}`} itemprop="image" />
+        <img src={('/' + author.picture).replace('/public', '')} alt={`Photo of ${author.name}`} itemprop="image" />
       </div>
     </div>
   </figure>
