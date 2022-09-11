@@ -10,9 +10,13 @@
     import { blogUrl, apiUrl } from '../lib/variables.js';
     import '../assets/global.css';
 
-    const data = Astro.props
+    const { Content, frontmatter, rawContent, compiledContent } = Astro.props
 
-    console.log(data)
+    // console.log(data)
+    console.log('llllllllllllll')
+    console.log(Content)
+    console.log(frontmatter)
+    console.log(rawContent())
 
     // const { slug } = Astro.request.params;
     // const { slug } = Astro.params;
@@ -47,21 +51,24 @@
             // dest: "/my/custom/feed.xml",
         });
 
-        return data.map(article => {
-            const slug = convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)
-            return {
-                params: {
-                    slug
-                }
-            }
-        })
+        // return data.map(article => {
+        //     const slug = convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)
+        //     return {
+        //         params: {
+        //             slug
+        //         }
+        //     }
+        // })
     }
 
-    const url = `${blogUrl}/posts/${convertToSlug(data.content.title + '-' + data.content.description)}`;
+    const url = `${blogUrl}/posts/${convertToSlug(frontmatter.title + '-' + frontmatter.description)}`;
 
-    const title = `${data.content.title} | EchoSpaceDev Blog`;
+    const title = `${frontmatter.title} | EchoSpaceDev Blog`;
 
-    const author = (await Astro.glob('/src/lib/other/authors/*.md')).find(author => author.frontmatter.name == data.content.author).frontmatter
+    const author = (await Astro.glob('/src/lib/other/authors/*.md')).find(author => author.frontmatter.name == frontmatter.author).frontmatter
+
+    // const markdownContent = data.rawContent()
+    // console.log('rrrrrrrr', data.rawContent())
     
     // async function getAuthorByFullName(name) {
     //     return (await Astro.glob('/src/lib/other/authors/*.md')).find(author => author.frontmatter.name == name).frontmatter
@@ -103,31 +110,31 @@
     }
     </script>
 
-    <meta property="og:title" content={data.content.title}>
+    <meta property="og:title" content={frontmatter.title}>
     <meta property="og:type" content="article">
     <meta property="og:url" content={url}>
-    <meta property="og:image" content={data.content.image}>
-    <meta property="og:image:alt" content={`Thumbnail for ${data.content.title} blog post`}>
-    <meta property="og:description" content={data.content.description}>
+    <meta property="og:image" content={frontmatter.image}>
+    <meta property="og:image:alt" content={`Thumbnail for ${frontmatter.title} blog post`}>
+    <meta property="og:description" content={frontmatter.description}>
     <meta property="og:site_name" content="EchoSpaceDev Blog">
-    <meta property="article:published_time" content={data.content.published_at}>
-    <meta property="article:modified_time" content={data.content.updated_at}>
-    <meta property="article:author:first_name" content={data.content.author.split(' ')[0]}>
-    <meta property="article:author:last_name" content={data.content.author.split(' ')[1]}>
+    <meta property="article:published_time" content={frontmatter.published_at}>
+    <meta property="article:modified_time" content={frontmatter.updated_at}>
+    <meta property="article:author:first_name" content={frontmatter.author.split(' ')[0]}>
+    <meta property="article:author:last_name" content={frontmatter.author.split(' ')[1]}>
     <!-- <meta property="article:section" content={data.topics.map(function(topic) { return topic.name }).join(', ')}>
     <meta property="article:tag" content={data.topics.map(function(topic) { return topic.name }).join(', ')}> -->
-    <meta property="article:section" content={data.content.topic}>
-    <meta property="article:tag" content={data.content.topic}>
+    <meta property="article:section" content={frontmatter.topic}>
+    <meta property="article:tag" content={frontmatter.topic}>
     <!-- <meta property="og:locale" content="en_GB" />
     <meta property="og:locale:alternate" content="fr_FR" />
     <meta property="og:locale:alternate" content="es_ES" /> -->
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@aml_amine" />
-    <meta name="twitter:title" content={data.content.title} />
-    <meta name="twitter:description" content={data.content.description} />
-    <meta name="twitter:image" content={data.content.image} />
-    <meta name="twitter:image:alt" content={`Thumbnail for ${data.content.title} blog post`}>
+    <meta name="twitter:title" content={frontmatter.title} />
+    <meta name="twitter:description" content={frontmatter.description} />
+    <meta name="twitter:image" content={frontmatter.image} />
+    <meta name="twitter:image:alt" content={`Thumbnail for ${frontmatter.title} blog post`}>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,11 +151,11 @@
     <main class="container mx-auto px-4 max-w-xl">
         <article itemscope itemtype="http://schema.org/Article" class="flex flex-col space-y-2 mt-10 mb-10">
             <!-- <div class="flex flex-col space-y-2 mt-10 mb-10"> -->
-                <PostHeader title={data.content.title} image={data.content.image} imageSource={data.content.image_source} topics={[data.content.topics]} publishedAt={data.content.date} author={author} />
+                <PostHeader title={frontmatter.title} image={frontmatter.image} imageSource={frontmatter.image_source} topics={[frontmatter.topics]} publishedAt={frontmatter.date} author={author} />
                 <div class="divider" />
-                <PostContent content={data.content.content} />
+                <PostContent markdownData={compiledContent()} />
                 <!-- Quotes are optional -->
-                {data.quote != null ? <PostQuote quote={data.content.quote} quoteBy={data.content.quote_by} /> : ''}
+                {frontmatter.quote != null ? <PostQuote quote={frontmatter.quote} quoteBy={frontmatter.quote_by} /> : ''}
                 <div class="divider" />
                 <PostShare url={url} />
                 <PostAuthor author={author} />

@@ -1,6 +1,6 @@
 <script>
   import PostPreview from "./PostPreview.svelte";
-  // import Search from "./Search.svelte"
+  import Search from "./Search.svelte"
 
   export let data;
   export let dataArt;
@@ -28,6 +28,8 @@
   console.log('articles')
   console.log(dataArt)
   console.log(topics)
+
+  let searchByValue = ''
 </script>
 
 <div class="flex flex-col">
@@ -102,17 +104,17 @@
 
   <div class="flex justify-center flex-wrap article" style="margin-top: 2rem;">
     <div>
-      <h3 class="text-center">Available topics</h3>
+      <h3 class="text-center">Search blog by topics</h3>
       <div class="flex" style="color: #FEF9E6;">
         {#each topics as { name }}
           {#if name == "all"}
             {#if dataArt.length != dataArtAsCopy.length}
-              <button on:click={() => filter(name)} class="badge mx-2 my-2" style="background-color: #f7f7e6; color: black;"
+              <button on:click={() => filter(name)} class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2" style="background-color: #f7f7e6; color: black;"
                 >{name}</button
               >
             {/if}
           {:else}
-            <button on:click={() => filter(name)} class="badge mx-2 my-2" style="background-color: #f7f7e6; color: black;"
+            <button on:click={() => filter(name)} class="badge mx-2 my-2 hover:border-cyan-600 hover:border-2" style="background-color: #f7f7e6; color: black;"
               >{name}</button
             >
           {/if}
@@ -123,9 +125,9 @@
 
   <div class="divider" />
 
-  <!-- <Search /> -->
+  <Search bind:searchByValue />
 
-  {#each articles as article}
+  {#each articles.filter(article => article.title.toLowerCase().includes(searchByValue)) as article}
     <PostPreview
       title={article.title}
       topics={article.topics}

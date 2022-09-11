@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import svelte from '@astrojs/svelte';
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 dotenv.config()
 
@@ -32,7 +33,8 @@ export default defineConfig ({
   },
   integrations: [
     svelte(),
-    sitemap()
+    sitemap(),
+    mdx()
   ],
   site: process.env.BLOG_URL,
 })

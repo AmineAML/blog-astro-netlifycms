@@ -27,7 +27,7 @@
     </figcaption>
   </figure>
   <div class="flex space-x-2 flex-wrap" itemprop="keywords">
-    {#each topics as topic}
+    {#each topics[0] as topic}
       <div class="badge mx-2 my-2" style="background-color: #f7f7e6; color: black;">{topic}</div>
     {/each}
     <!-- <div class="badge badge-ghost mx-2 my-2">{topic.name}</div> -->

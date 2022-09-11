@@ -1,9 +1,5 @@
 ---
-    import { Markdown } from 'astro/components';
-
-    const { content } = Astro.props
+    const { markdownData } = Astro.props
 ---
 
-<div itemprop="articleBody" class="article prose">
-    <Markdown content={content} />
-</div>
+<div itemprop="articleBody" class="article prose" set:html={markdownData}/>

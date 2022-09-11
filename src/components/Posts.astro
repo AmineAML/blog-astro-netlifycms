@@ -38,5 +38,5 @@
 <main class="container mx-auto px-4 max-w-xl">
 	<!-- Enabling JavaScript on the component doesn't seem to work and throws a 'destructured parameter is undefined' error, to make it work then we might need to update the svelte adapter and even whole astro framework version -->
 	<!-- <Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
-	<Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} />
+	<Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load />
 </main>
