@@ -208,4 +208,16 @@ Otherwise, you can target only Google.
 </html>
 ```
 
-schema markup
+## schema markup
+
+## Tools
+
+## Sources and useful links
+- w3c seo tags
+- what is bounce rate from ahrefs
+- schema markup
+- json-ld
+- microdata
+- rdf
+- open graph
+- twitter card validator
