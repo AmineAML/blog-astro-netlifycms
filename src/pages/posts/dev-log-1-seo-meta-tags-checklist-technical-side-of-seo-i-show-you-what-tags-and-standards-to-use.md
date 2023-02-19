@@ -49,6 +49,20 @@ Pay attention to this one, perhaps you have a page you don't want to show on sea
   <meta name="robots" content="noindex,nofollow">
 </html>
 ```
+### Keywords tag
+You probably shouldn't care to add this one, I'm adding it here as it used to work, but nowadays after being so much abused, search engines don't mind it the same value they used to give it before. What this tag does is to list the target keywords you want to rank for.
+```html
+<html>
+  <meta name="keywords" content="example, another example" />
+</html>
+```
+### Author tag
+Name of the page's author.
+```html
+<html>
+  <meta name="author" content="John Doe">
+</html>
+```
 ### Language tags
 A language tag or attribute as we're going tells a search engine what language is the page written with, which help ranking it higher for users using it.
 
@@ -63,6 +77,20 @@ Otherwise, for other search engines, you can define it on the `<html></html>` ta
 <html lang="en">
 </html>
 ```
+While here, we can also mention other tags that serve to link to other versions of your website in another language.
+```html
+<html>
+  <link rel="alternate" hreflang="en" href="https://www.example.com">
+  <link rel="alternate" hreflang="de" href="https://www.example.com/de">
+</html>
+```
+We can be specific by adding regions.
+```html
+<html>
+  <link rel="alternate" hreflang="en-ca" href="https://www.example.com/ca">
+  <link rel="alternate" hreflang="en-au" href="https://www.example.com/au">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/" />
+</html>
 ### Canonical tag
 When search engines crawl your website, they can do it using many URLs for the same page, for example, crawling your home may lead an engine to have:
 - https://yourwebsite.tld
