@@ -13,8 +13,17 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@netlify/plugin-a11y": "^1.0.0-beta.1",
+    "@netlify/plugin-lighthouse": "^4.0.7",
     "astro": "^2.0.14",
     "dotenv": "^16.0.1",
+    "netlify-plugin-checklinks": "^4.1.1",
+    "netlify-plugin-hashfiles": "^4.0.2",
+    "netlify-plugin-html-validate": "^1.1.1",
+    "netlify-plugin-image-optim": "^0.4.0",
+    "netlify-plugin-is-website-vulnerable": "^2.0.3",
+    "netlify-plugin-no-more-404": "^0.0.15",
+    "netlify-plugin-submit-sitemap": "^0.4.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.2"
   },
