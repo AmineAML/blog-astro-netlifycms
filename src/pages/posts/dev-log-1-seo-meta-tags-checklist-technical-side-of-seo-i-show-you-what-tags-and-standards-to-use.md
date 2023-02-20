@@ -288,7 +288,7 @@ Otherwise, you can target only Google.
 ```
 
 ## Schema Markup
-Schemas are used to structure data on the internet, web pages, email messages and beyond, it's the language search engines use to read and understand the content of your page. Schema Markup is a semantic vocabulary, you'll have to use an encoding format like JSON-LD as the one I prefer and we'll be seeing an example of it, other encodings include MicroData and RDFa. \
+Schemas are used to structure data on the internet, web pages, email messages and beyond, it's the language search engines use to read and understand the content of your page, its the one responsible for correctly formatting your page on the search results, just think of how food recipes pages or news articles look unique the search engine results. Schema Markup is a semantic vocabulary, you'll have to use an encoding format like JSON-LD as the one I prefer and we'll be seeing an example of it, other encodings include MicroData and RDFa. \
 JSON-LD is embeded in the `<head></head>` tag, the following is an example for an article page.
 ```html
 <html>
@@ -299,7 +299,7 @@ JSON-LD is embeded in the `<head></head>` tag, the following is an example for a
           "@type": "Article",
           "headline": Space Techonologies,
           "image": [
-               https://image.link,
+               "https://image.link"
           ],
           "datePublished": date,
           "dateModified": date,
@@ -314,15 +314,34 @@ JSON-LD is embeded in the `<head></head>` tag, the following is an example for a
 </html>
 ```
 
-
 ## Tools
+It never a bad idea to check the validity of your SEO, on this part I'm going to list a couple of useful tool to do audits:
+- [Checkbot](https://www.checkbot.io/)
+- [Woorank](https://www.woorank.com/)
+
+Have a look at these tags validators and generators:
+- [HTML Geo Tag Generator](https://www.geo-tag.de/generator/en.html)
+- [Twitter Card Validator](https://cards-dev.twitter.com/validator)
+- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug)
+- [Schema Markup Validator](https://validator.schema.org/)
+- [Google's Rich Results Test for Schema Markup Validator](https://developers.google.com/search/docs/appearance/structured-data)
+- [Pinterest Rich Pin Validator](https://developers.pinterest.com/tools/url-debugger/)
+
+And of course official tools to up your game:
+- [Google Search Console](https://search.google.com/search-console/about/)
+- [Bing Webmaster](https://www.bing.com/webmasters/about)
+- [Yandex Webmaster](https://webmaster.yandex.com/welcome/)
+
+Looking to find keywords, then you can use these tools:
+- [Ubersuggest](https://neilpatel.com/ubersuggest/)
+- [Google's Keyword Planner](https://ads.google.com/home/tools/keyword-planner/)
 
 ## Sources and useful links
-- w3c seo tags
-- what is bounce rate from ahrefs
-- schema markup
-- json-ld
-- microdata
-- rdf
-- open graph
-- twitter card validator
+- [W3C Meta Tags](https://www.w3schools.com/tags/tag_meta.asp)
+- [Bounce Rate](https://www.w3schools.com/tags/tag_meta.asp)
+- [Schema](https://schema.org/)
+- [JSON-LD](https://json-ld.org/)
+- [MicroData](https://html.spec.whatwg.org/multipage/microdata.html#microdata)
+- [RDFa](https://rdfa.info/)
+- [https://ogp.me/](https://ogp.me/)
+- [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards)
