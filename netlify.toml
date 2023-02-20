@@ -40,8 +40,8 @@
   # (for development) turn true for extra diagnostic logging
   debugMode = false
 
-[[plugins]]
-  package = "netlify-plugin-image-optim"
+# [[plugins]]
+#   package = "netlify-plugin-image-optim"
 
 # [[plugins]]
   # package = "netlify-plugin-html-validate"
