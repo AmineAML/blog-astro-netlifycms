@@ -48,7 +48,7 @@
 
  [plugins.inputs]
     ext = "html"
-    config = ".htmlvalidate.json"
+    # config = ".htmlvalidate.json"
 
 [[plugins]]
   package = "netlify-plugin-hashfiles"
