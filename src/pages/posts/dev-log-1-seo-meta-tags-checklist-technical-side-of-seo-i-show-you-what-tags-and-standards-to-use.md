@@ -109,6 +109,7 @@ We can be specific by adding regions.
     <link rel="alternate" hreflang="x-default" href="https://www.example.com/" />
   </head>
 </html>
+```
 ### Canonical tag
 When search engines crawl your website, they can do it using many URLs for the same page, for example, crawling your home may lead an engine to have:
 - https://yourwebsite.tld
