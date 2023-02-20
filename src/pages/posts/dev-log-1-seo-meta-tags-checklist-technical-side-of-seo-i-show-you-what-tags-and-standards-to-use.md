@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/article.astro
+layout: ../../layouts/article.astro
 title: "Dev Log 1: SEO Meta Tags Checklist"
 description: Technical side of SEO, I show you what tags and standards to use.
 content: Technical side of SEO, I show you what tags and standards to use.
