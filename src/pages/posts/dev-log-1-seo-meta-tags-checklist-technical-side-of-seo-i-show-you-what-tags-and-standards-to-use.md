@@ -2,9 +2,9 @@
 layout: ../layouts/article.astro
 title: "Dev Log 1: SEO Meta Tags Checklist"
 description: Technical side of SEO, I show you what tags and standards to use.
-content: example
+content: Technical side of SEO, I show you what tags and standards to use.
 topics:
-  - HIDE_DEFAULT_TOPIC
+  - SEO
 date: 2023-02-19T20:32:59.745Z
 image: public/assets/posts-images/pexels-evg-kowalievska-1174775.jpg
 author: Amine Amellouk
