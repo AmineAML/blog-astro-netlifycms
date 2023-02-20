@@ -50,8 +50,8 @@
     # ext = "html"
     # config = ".htmlvalidate.json"
 
-[[plugins]]
-  package = "netlify-plugin-hashfiles"
+# [[plugins]]
+#   package = "netlify-plugin-hashfiles"
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
