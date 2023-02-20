@@ -15,12 +15,12 @@ image_source: EVG Kowalievska on Pexels
 I've been sitting on this for while, recently I had to make a website SEO-friendly, so I went to previous projects as I tend to keep a documents in each one with what I've learned and useful links. Honestly, I dread the feeling to search for something for way too many times, that's why it's important to keep track of your learning in a concise document.
 
 
-In this article, I present a cheat-sheet for various meta tags that you can copy&paste and I can look back at for easy access, this should serve primarly as a reference, you can find links for sources at the end section of this article. Remember, even if ChatGPT is trending for its capabilities to help you rank at the top of search engines' results, its equally important to have your tags in place.\
+In this article, I present a cheat-sheet for various meta tags that you can copy&paste and I can look back at for easy access, this should serve primarily as a reference, you can find links for sources at the end section of this article. Remember, even if ChatGPT is trending for its capabilities to help you rank at the top of search engines' results, its equally important to have your tags in place.\
 
 
 ## Head Tags
 
-The head tag `<head></head>` is where you'll add every `<meta>` tag, we'll see some on this section and keep other specifc ones for other sections.
+The head tag `<head></head>` is where you'll add every `<meta>` tag, we'll see some on this section and keep other specific ones for other sections.
 ### Responsiveness tag
 Does tell that your website is mobile responsive so that you gain visibility in search results from mobile phones.
 ```html
@@ -157,14 +157,54 @@ UGC (User Generated Content) link to protect yourself from the bad effect it can
 
 
 ## social media
-
+This would not effect your findability on search results, however when someone pastes your link on e.g Facebook, you need to have it well formatted which brings more attention to it. Social network use different rules for formatting.
 ### Facebook
-
-### twitter
-
+Facebook don't have their unique standard with whom they force you to use, rather, they use Open Graph tags, here is an example for how to use it with an article page.
+```html
+<html>
+  <head>
+    <meta property="og:title" content="Space Technologies Week Updates">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spacetechnologies.com">
+    <meta property="og:image" content="https://image.link">
+    <meta property="og:image:alt" content={`Thumbnail space technologies latest week updated for blog post">
+    <meta property="og:description" content="Looking at the stars we always wondered what is there, are those lanterns hanged above us or is that whole other worlds there">
+    <meta property="og:site_name" content="Spce Technologies">
+    <meta property="fb:admins" content="Facebook numberic ID" />
+    <meta property="article:published_time" content="01/01/2022">
+    <meta property="article:modified_time" content="02/01/2022">
+    <meta property="article:author:first_name" content="John">
+    <meta property="article:author:last_name" content="Doe">
+    <meta property="article:section" content="Tech">
+    <meta property="article:tag" content="Tech">
+  </head>
+</html>
+```
+### Twitter
+Has its own rules for Meta Tags to follow.
+```html
+<html>
+  <head>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@doe_john />
+    <meta name="twitter:title" content="Space Technologies" />
+    <meta name="twitter:description" content="Looking at the stars we always wondered what is there, are those lanterns hanged above us or is that whole other worlds there" />
+    <meta name="twitter:image" content="https://image.link" />
+    <meta name="twitter:image:alt" content="Space Technologies Thumbnail" />
+  </head>
+</html>
+```
 ### Google+
-
-
+As for Google+, its based on the Schema Markup.
+```html
+<html>
+  <head>
+    <meta itemprop="name" content="Space Technologies">
+    <meta itemprop="description" content="Looking at the stars we always wondered what is there, are those lanterns hanged above us or is that whole other worlds there">
+    <meta itemprop="image" content="https://image.link"> 
+  </head>
+</html>
+```
 
 ## Location tags
 
