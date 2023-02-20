@@ -207,8 +207,47 @@ As for Google+, its based on the Schema Markup.
 ```
 
 ## Location tags
-
-
+These tags are for the physical location of a business therefore it boosts your Local SEO. \
+The first one is for the geographic latitude and longitude.
+```html
+<html>
+  <head>
+    <meta name="geo.position" content="48.169822;11.601171" />
+  </head>
+</html>
+```
+Add another one for the country code and regional code.
+```html
+<html>
+  <head>
+    <meta name="geo.region" content="DE-BY" />
+  </head>
+</html>
+```
+Next, is the name of the place, typically this should refer to your city or the nearest town.
+```html
+<html>
+  <head>
+    <meta name="geo.placename" content="München" />
+  </head>
+</html>
+```
+The ICBM is a valid tag and is similar to the 'position' shown above, it's widely used.
+```html
+<html>
+  <head>
+    <meta name="ICBM" content="48.169822, 11.601171" />
+  </head>
+</html>
+```
+This last one has nothing to do with the geo location of your business, alas some databases extract the title of your page from the meta, title can be the same one of your page title.
+```html
+<html>
+  <head>
+    <meta name="DC.title" content="Space Technologies" />
+  </head>
+</html>
+```
 
 ## Translation tags
 Language affects the SEO of your website, one way is that search engines results might display pages from your website that are translated in a language your content is not available in, this is done because of the auto translate feature.\
@@ -248,7 +287,33 @@ Otherwise, you can target only Google.
 </html>
 ```
 
-## schema markup
+## Schema Markup
+Schemas are used to structure data on the internet, web pages, email messages and beyond, it's the language search engines use to read and understand the content of your page. Schema Markup is a semantic vocabulary, you'll have to use an encoding format like JSON-LD as the one I prefer and we'll be seeing an example of it, other encodings include MicroData and RDFa. \
+JSON-LD is embeded in the `<head></head>` tag, the following is an example for an article page.
+```html
+<html>
+  <head>
+     <script type="application/ld+json">
+       {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": Space Techonologies,
+          "image": [
+               https://image.link,
+          ],
+          "datePublished": date,
+          "dateModified": date,
+          "author": {
+             "@type": "Person",
+             "name": John Doe,
+                 "url": johndoe.com
+             }
+          }
+     </script>
+  </head>
+</html>
+```
+
 
 ## Tools
 
