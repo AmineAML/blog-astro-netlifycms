@@ -15,7 +15,7 @@ image_source: EVG Kowalievska on Pexels
 I've been sitting on this for while, recently I had to make a website SEO-friendly, so I went to previous projects as I tend to keep a documents in each one with what I've learned and useful links. Honestly, I dread the feeling to search for something for way too many times, that's why it's important to keep track of your learning in a concise document.
 
 
-In this article, I present a cheat-sheet for various meta tags that you can copy&paste and I can look back at for easy access, this should serve primarily as a reference, you can find links for sources at the end section of this article. Remember, even if ChatGPT is trending for its capabilities to help you rank at the top of search engines' results, its equally important to have your tags in place.\
+In this article, I present a cheat-sheet for various meta tags that you can copy&paste and I can look back at for easy access, this should serve primarily as a reference, you can find links for sources at the end section of this article. Remember, even if ChatGPT is trending for its capabilities to help you rank at the top of search engines' results, its equally important to have your tags in place.
 
 
 ## Head Tags
@@ -78,7 +78,7 @@ Name of the page's author.
 ### Language tags
 A language tag or attribute as we're going tells a search engine what language is the page written with, which help ranking it higher for users using it.
 
-Bing use their own unique way of identifying a website's language which define the intended audience language but not necessarly the content's language. We use a combination of language code according to ISO 639-1 and region code according to ISO 3166. 
+Bing use their own unique way of identifying a website's language which define the intended audience language but not necessarily the content's language. We use a combination of language code according to ISO 639-1 and region code according to ISO 3166. 
 ```html
 <html>
   <head>
@@ -157,7 +157,7 @@ UGC (User Generated Content) link to protect yourself from the bad effect it can
 
 
 ## social media
-This would not effect your findability on search results, however when someone pastes your link on e.g Facebook, you need to have it well formatted which brings more attention to it. Social network use different rules for formatting.
+This would not effect your find-ability on search results, however when someone pastes your link on e.g Facebook, you need to have it well formatted which brings more attention to it. Social network use different rules for formatting.
 ### Facebook
 Facebook don't have their unique standard with whom they force you to use, rather, they use Open Graph tags, here is an example for how to use it with an article page.
 ```html
@@ -170,7 +170,7 @@ Facebook don't have their unique standard with whom they force you to use, rathe
     <meta property="og:image:alt" content={`Thumbnail space technologies latest week updated for blog post">
     <meta property="og:description" content="Looking at the stars we always wondered what is there, are those lanterns hanged above us or is that whole other worlds there">
     <meta property="og:site_name" content="Spce Technologies">
-    <meta property="fb:admins" content="Facebook numberic ID" />
+    <meta property="fb:admins" content="Facebook numeric ID" />
     <meta property="article:published_time" content="01/01/2022">
     <meta property="article:modified_time" content="02/01/2022">
     <meta property="article:author:first_name" content="John">
@@ -259,7 +259,7 @@ Let's you won't to disable translation on a section on the page, or perhaps in t
 ```html
 <html>
   <body>
-     <small>© 2020 <span translate="no">BrandName</span></small>
+     <small>© 2020 <span translate="no">Frozen Fruits</span></small>
   </body>
 </html>
 ```
@@ -289,7 +289,7 @@ Otherwise, you can target only Google.
 
 ## Schema Markup
 Schemas are used to structure data on the internet, web pages, email messages and beyond, it's the language search engines use to read and understand the content of your page, its the one responsible for correctly formatting your page on the search results, just think of how food recipes pages or news articles look unique the search engine results. Schema Markup is a semantic vocabulary, you'll have to use an encoding format like JSON-LD as the one I prefer and we'll be seeing an example of it, other encodings include MicroData and RDFa. \
-JSON-LD is embeded in the `<head></head>` tag, the following is an example for an article page.
+JSON-LD is embedded in the `<head></head>` tag, the following is an example for an article page.
 ```html
 <html>
   <head>
@@ -331,10 +331,14 @@ And of course official tools to up your game:
 - [Google Search Console](https://search.google.com/search-console/about/)
 - [Bing Webmaster](https://www.bing.com/webmasters/about)
 - [Yandex Webmaster](https://webmaster.yandex.com/welcome/)
+- [Google Search Performance Report](https://support.google.com/webmasters/answer/7576553)
 
 Looking to find keywords, then you can use these tools:
 - [Ubersuggest](https://neilpatel.com/ubersuggest/)
 - [Google's Keyword Planner](https://ads.google.com/home/tools/keyword-planner/)
+
+## Conclusion
+This post can only serve as a reference and quick-to-check guide, if you want to learn more then I can make another article delving deep into things here or you can look at the bellow resources for more details.
 
 ## Sources and useful links
 - [W3C Meta Tags](https://www.w3schools.com/tags/tag_meta.asp)
