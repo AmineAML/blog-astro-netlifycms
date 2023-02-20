@@ -43,11 +43,11 @@
 [[plugins]]
   package = "netlify-plugin-image-optim"
 
-[[plugins]]
-  package = "netlify-plugin-html-validate"
+# [[plugins]]
+  # package = "netlify-plugin-html-validate"
 
- [plugins.inputs]
-    ext = "html"
+#  [plugins.inputs]
+    # ext = "html"
     # config = ".htmlvalidate.json"
 
 [[plugins]]
