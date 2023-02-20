@@ -28,38 +28,38 @@
         return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
     }
 
-    export async function getStaticPaths({ rss }) {
-        // const response = await fetch(`${apiUrl}/articles`);
-        // const data = await response.json();
+    // export async function getStaticPaths({ rss }) {
+    //     // const response = await fetch(`${apiUrl}/articles`);
+    //     // const data = await response.json();
 
-        const data = (await Astro.glob('../pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any))
+    //     const data = (await Astro.glob('../pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any))
 
-        rss({
-            // The RSS Feed title, description, and custom metadata.
-            title: 'EchoSpaceDev Blog',
-            description: 'A blog about programming, Software Development with tutorials and topics discussions mainly about the Back-End and the DevOps',
-            customData: `<language>en-us</language>`,
-            // The list of items for your RSS feed, sorted.
-            items: [...data].map(article => ({
-                title: article.frontmatter.title,
-                description: article.frontmatter.description,
-                link: `${blogUrl}/posts/${convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)}`,
-                pubDate: article.content.date,
-            })),
-            // Optional: Customize where the file is written to.
-            // Otherwise, defaults to "/rss.xml"
-            // dest: "/my/custom/feed.xml",
-        });
+    //     rss({
+    //         // The RSS Feed title, description, and custom metadata.
+    //         title: 'EchoSpaceDev Blog',
+    //         description: 'A blog about programming, Software Development with tutorials and topics discussions mainly about the Back-End and the DevOps',
+    //         customData: `<language>en-us</language>`,
+    //         // The list of items for your RSS feed, sorted.
+    //         items: [...data].map(article => ({
+    //             title: article.frontmatter.title,
+    //             description: article.frontmatter.description,
+    //             link: `${blogUrl}/posts/${convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)}`,
+    //             pubDate: article.content.date,
+    //         })),
+    //         // Optional: Customize where the file is written to.
+    //         // Otherwise, defaults to "/rss.xml"
+    //         // dest: "/my/custom/feed.xml",
+    //     });
 
-        // return data.map(article => {
-        //     const slug = convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)
-        //     return {
-        //         params: {
-        //             slug
-        //         }
-        //     }
-        // })
-    }
+    //     // return data.map(article => {
+    //     //     const slug = convertToSlug(article.frontmatter.title + '-' + article.frontmatter.description)
+    //     //     return {
+    //     //         params: {
+    //     //             slug
+    //     //         }
+    //     //     }
+    //     // })
+    // }
 
     const url = `${blogUrl}/posts/${convertToSlug(frontmatter.title + '-' + frontmatter.description)}`;
 
@@ -113,7 +113,7 @@
     <meta property="og:title" content={frontmatter.title}>
     <meta property="og:type" content="article">
     <meta property="og:url" content={url}>
-    <meta property="og:image" content={frontmatter.image}>
+    <meta property="og:image" content={blogUrl + frontmatter.image.replace('public', '')}>
     <meta property="og:image:alt" content={`Thumbnail for ${frontmatter.title} blog post`}>
     <meta property="og:description" content={frontmatter.description}>
     <meta property="og:site_name" content="EchoSpaceDev Blog">

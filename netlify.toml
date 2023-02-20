@@ -1,3 +1,90 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+
+	[plugins.inputs]
+
+	# The base url of your site (optional, default = main URL set in Netlify)
+	baseUrl = "https://echospacedev.com"
+
+	# Path to the sitemap URL (optional, default = /sitemap.xml)
+	sitemapPath = "/sitemap-0.xml"
+
+	# Time in seconds to not submit the sitemap after successful submission
+	ignorePeriod = 0
+
+	# Enabled providers to submit sitemap to (optional, default = 'google', 'yandex'). Possible providers are currently only 'google', 'yandex'.
+	providers = [
+		"google",
+		"yandex"
+	]
+
+[[plugins]]
+  package = "netlify-plugin-is-website-vulnerable"
+
+[[plugins]]
+  package = "netlify-plugin-no-more-404"
+
+  # all inputs are optional, we just show you the defaults below
+  [plugins.inputs]
+  
+  # either "warn" or "error"
+  on404 = "error" 
+  
+  # change this key to a new one any time you need to restart from scratch
+  cacheKey = "MyCacheKey"
+  
+  # (for development) turn true for extra diagnostic logging
+  debugMode = false
+
+[[plugins]]
+  package = "netlify-plugin-image-optim"
+
+[[plugins]]
+  package = "netlify-plugin-html-validate"
+
+ [plugins.inputs]
+    ext = "html"
+    config = ".htmlvalidate.json"
+
+[[plugins]]
+  package = "netlify-plugin-hashfiles"
+
+[[plugins]]
+  package = "netlify-plugin-checklinks"
+  [plugins.inputs]
+  skipPatterns = ['https://fonts.gstatic.com']
+
+[[plugins]]
+  package = "@netlify/plugin-a11y"
+  [plugins.inputs]
+    # Check all HTML files in this project (the default behavior)
+    checkPaths = ['/']
+    # Do not fail the build if a11y issues are found
+    failWithIssues = false
+    # Ignore all HTML files in `/admin`
+    ignoreDirectories = ['/admin']
+    # Ignore any accessibility issues associated with an element matching this selector
+    ignoreElements = '.jumbotron > h2'
+    # Ignore any accessibility issues associated with this rule code or type
+    ignoreGuidelines = ['WCAG2AA.Principle1.Guideline1_4.1_4_6.G17']
+    # Perform a11y check against WCAG 2.1 AAA
+    wcagLevel = 'WCAG2AAA'
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+  # optional, fails build when a category is below a threshold
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+    pwa = 0.9
+
+  # optional, deploy the lighthouse report to a path under your site
+  [plugins.inputs]
+    output_path = "reports/lighthouse.html"

@@ -1,42 +1,122 @@
 ---
-	import Default from './Default.svelte';
-	import { apiUrl } from '../lib/variables.js';
+import Default from "./Default.svelte";
+// import { apiUrl } from "../lib/variables.js";
 
-	// const response = await fetch(`${apiUrl}/topics`);
-	// const data = await response.json();
+// const response = await fetch(`${apiUrl}/topics`);
+// const data = await response.json();
 
-	// const responseArt = await fetch(`${apiUrl}/articles`);
-	// const dataArt = await responseArt.json();
+// const responseArt = await fetch(`${apiUrl}/articles`);
+// const dataArt = await responseArt.json();
 
-	// export let collection: any
+// export let collection: any
 
-	// const { collection } = Astro.props
+// const { collection } = Astro.props
 
-	// export async function createCollection() {
-	// 	return {
-	// 		/** Load posts, sort newest -> oldest */
-	// 		async data() {
-	// 			const allPosts = Astro.fetchContent('./posts/*.md')
-	// 			return allPosts//.sort((a, b) => new Date(b.date) - new Date(a.date))
-	// 		},
+// export async function createCollection() {
+// 	return {
+// 		/** Load posts, sort newest -> oldest */
+// 		async data() {
+// 			const allPosts = Astro.fetchContent('./posts/*.md')
+// 			return allPosts//.sort((a, b) => new Date(b.date) - new Date(a.date))
+// 		},
 
-	// 		/** Set page size */
-	// 		pageSize: 10,
-	// 	}
-	// }
- 
-	// const posts = await Astro.glob('/src/pages/posts/.*md');
+// 		/** Set page size */
+// 		pageSize: 10,
+// 	}
+// }
 
-	const posts = (await Astro.glob('/src/pages/posts/*.md')).filter(post => post.frontmatter.title != 'HIDE_DEFAULT_ARTICLE').map(post => post.frontmatter).sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any));
+// const posts = await Astro.glob('/src/pages/posts/.*md');
 
-	const topics = (await Astro.glob('/src/lib/other/topics/*.md')).filter(post => post.frontmatter.name != 'HIDE_DEFAULT_TOPIC').map(topic => topic.frontmatter);
+// function convertToSlug(text) {
+//   return text
+//     .toLowerCase()
+//     .replace(/[^a-z0-9]+/g, "-")
+//     .replace(/^-+|-+$/g, "");
+// }
 
-	console.log(posts)
-	console.log('reee', topics)
+// export async function get(context) {
+//   const posts = (await Astro.glob("/src/pages/posts/*.md"))
+//     .filter((post) => post.frontmatter.title != "HIDE_DEFAULT_ARTICLE")
+//     .map((post) => post.frontmatter)
+//     .sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any));
+//   return rss({
+//     title: "EchoSpaceDev Blog",
+//     description:
+//       "I'm reigniting a passion I had stopped doing since many years and one that I've really enjoyed. As a Software Developer, learning is part of the job, while we might retain that knowledge by heart, engineers are problem solvers that understand their craft. Thus as a good practice is blogging and writing documentation about what we've learned which is not just an act of sharing and helping others, actually it's highly recommended we do so as many of us got stuck later on the simelar issues and had to research again resulting in wasted time that could be spent updating what we've already done before and thus becoming effecient with our work",
+//     // Pull in your project "site" from the endpoint context
+//     // https://docs.astro.build/en/reference/api-reference/#contextsite
+//     site: context.site,
+//     items: posts.map((post) => ({
+//       // Assumes all RSS feed item properties are in post frontmatter
+//       title: post.frontmatter.title,
+//       pubDate: post.frontmatter.date,
+//       description: post.frontmatter.description,
+//       // Generate a `url` from each post `slug`
+//       // This assumes all blog posts are rendered as `/blog/[slug]` routes
+//       // https://docs.astro.build/en/guides/content-collections/#generating-pages-from-content-collections
+//       link: `/posts/${convertToSlug(
+//         post.frontmatter.title + "-" + post.frontmatter.description
+//       )}`,
+//     })),
+//   });
+// }
+
+// export async function getStaticPaths({ rss }) {
+//   rss({
+//     // The RSS Feed title, description, and custom metadata.
+//     title: "EchoSpaceDev Blog",
+//     description:
+//       "I'm reigniting a passion I had stopped doing since many years and one that I've really enjoyed. As a Software Developer, learning is part of the job, while we might retain that knowledge by heart, engineers are problem solvers that understand their craft. Thus as a good practice is blogging and writing documentation about what we've learned which is not just an act of sharing and helping others, actually it's highly recommended we do so as many of us got stuck later on the simelar issues and had to research again resulting in wasted time that could be spent updating what we've already done before and thus becoming effecient with our work",
+//     // Pull in your project "site" from the endpoint context
+//     // https://docs.astro.build/en/reference/api-reference/#contextsite
+//     // site: context.site,
+//     items: posts.map((post) => ({
+//       // Assumes all RSS feed item properties are in post frontmatter
+//       title: post.frontmatter.title,
+//       pubDate: post.frontmatter.date,
+//       description: post.frontmatter.description,
+//       // Generate a `url` from each post `slug`
+//       // This assumes all blog posts are rendered as `/blog/[slug]` routes
+//       // https://docs.astro.build/en/guides/content-collections/#generating-pages-from-content-collections
+//       link: `/posts/${convertToSlug(
+//         post.frontmatter.title + "-" + post.frontmatter.description
+//       )}`,
+//     })),
+//     // Optional: Customize where the file is written to.
+//     // Otherwise, defaults to "/rss.xml"
+//     // dest: "/my/custom/feed.xml",
+//   });
+
+//   return data.map((article) => {
+//     const { slug } = article;
+//     return {
+//       params: {
+//         slug,
+//       },
+//     };
+//   });
+// }
+
+const posts = (await Astro.glob("/src/pages/posts/*.md"))
+  .filter((post) => post.frontmatter.title != "HIDE_DEFAULT_ARTICLE")
+  .map((post) => post.frontmatter)
+  .sort((a, b) => (new Date(b.date) as any) - (new Date(a.date) as any));
+
+const topics = (await Astro.glob("/src/lib/other/topics/*.md"))
+  .filter((post) => post.frontmatter.name != "HIDE_DEFAULT_TOPIC")
+  .map((topic) => topic.frontmatter);
+
+console.log(posts);
+console.log("reee", topics);
 ---
 
 <main class="container mx-auto px-4 max-w-xl">
-	<!-- Enabling JavaScript on the component doesn't seem to work and throws a 'destructured parameter is undefined' error, to make it work then we might need to update the svelte adapter and even whole astro framework version -->
-	<!-- <Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
-	<Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load />
+  <!-- Enabling JavaScript on the component doesn't seem to work and throws a 'destructured parameter is undefined' error, to make it work then we might need to update the svelte adapter and even whole astro framework version -->
+  <!-- <Default data={[{ name: 'all' },...topics]} dataArt={posts} dataArtAsCopy={posts} client:load /> -->
+  <Default
+    data={[{ name: "all" }, ...topics]}
+    dataArt={posts}
+    dataArtAsCopy={posts}
+    client:load
+  />
 </main>

@@ -33,7 +33,13 @@ export default defineConfig ({
   },
   integrations: [
     svelte(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        page !== "https://www.echospacedev.com/posts/DEFAULT-DO-NOT-DELETE/" //&&
+        // page !== "https://stargazers.club/secret-vip-lounge-2" &&
+        // page !== "https://stargazers.club/secret-vip-lounge-3" &&
+        // page !== "https://stargazers.club/secret-vip-lounge-4",
+    }),
     mdx()
   ],
   site: process.env.BLOG_URL,
