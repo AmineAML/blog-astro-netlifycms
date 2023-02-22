@@ -15,4 +15,4 @@ quote: Any fool can write code that computers can understand. Good programmers
 quote_by: Martin Fowler
 image_source: "-"
 ---
-Commit messages themselves are part of the documentation, whenever I find no documentation for a project then I sight silently, if at least your commits are well structured that could help new people understand the reasoning behind decisions in the projects and would help you remember stuff down the line if you need to. A thing plus to keep in mind, is to make is have a unified standard.
+Commit messages themselves are part of the documentation, whenever I find no documentation for a project then I sight silently, if at least your commits are well structured that could help new people understand the reasoning behind decisions in the projects and would help you remember stuff down the line if you need to. A thing plus to keep in mind, is to make is have a unified standard for a team, project or your whole organization.
