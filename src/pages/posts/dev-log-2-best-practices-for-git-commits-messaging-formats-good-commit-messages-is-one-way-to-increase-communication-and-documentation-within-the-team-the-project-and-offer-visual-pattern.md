@@ -6,7 +6,7 @@ description: Good commit messages is one way to increase communication and
 content: Good commit messages is one way to increase communication and
   documentation within the team, the project and offer visual pattern.
 topics:
-  - HIDE_DEFAULT_TOPIC
+  - Documentation
 date: 2023-02-22T21:51:59.746Z
 image: public/assets/posts-images/tvcz6r7q2p371.png
 author: Amine Amellouk
